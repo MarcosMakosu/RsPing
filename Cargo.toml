@@ -1,0 +1,15 @@
+[package]
+name = "rsping"
+version = "0.6.0"
+edition = "2021"
+
+[dependencies]
+ratatui = "0.29"
+crossterm = { version = "0.28", features = ["event-stream"] }
+surge-ping = "0.8"
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+[target.'cfg(windows)'.dependencies]
+winping-rs = "0.11"
+

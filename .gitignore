@@ -1,0 +1,16 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock
+
+# CSVs gerados pelo rsping
+rsping_*.csv
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db/target
