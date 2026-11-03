@@ -1364,6 +1364,7 @@ fn progress_bar(score: u8, width: usize) -> String {
 }
 
 // RESUMO FINAL
+
 fn print_summary(app: &App) {
     let sep_wide = "═".repeat(76);
     let sep_thin = "─".repeat(74);
@@ -1562,6 +1563,8 @@ fn print_summary(app: &App) {
     }
 
     println!("{}", sep_wide);
+    println!();
+}
 
 // MAIN
 #[tokio::main]
