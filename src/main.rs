@@ -2,7 +2,7 @@ use std::collections::VecDeque;
 use std::net::IpAddr;
 use std::time::{Duration, Instant};
 
-use crossterm::event::{Event, EventStream, KeyCode, KeyModifiers};
+use crossterm::event::{Event, EventStream, KeyCode, KeyEventKind, KeyModifiers};
 use futures::StreamExt;
 use ratatui::{
     layout::{Constraint, Layout, Rect},
@@ -1617,7 +1617,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             tokio::select! {
                 Some(Ok(event)) = events.next() => {
                     if let Event::Key(key) = event {
-                        if app.menu.is_some() {
+                        if key.kind != KeyEventKind::Press {
                             let action = match key.code {
                                 KeyCode::Up => {
                                     if let Some(ref mut m) = app.menu {
@@ -1645,7 +1645,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 Some(2) => { app.paused = false; }
                                 _ => {}
                             }
-                        } else {
+                        } else if app.menu.is_some() {
                             match key.code {
                                 KeyCode::Char('q') | KeyCode::Esc => {
                                     app.paused = true;
